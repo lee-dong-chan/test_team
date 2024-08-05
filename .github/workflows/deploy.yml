@@ -33,7 +33,7 @@ jobs:
           if [ -s "$NVM_DIR/nvm.sh" ]; then
               . "$NVM_DIR/nvm.sh"
           else
-              echo "nvm,sh not found"
+              echo "nvm.sh not found"
               exit 1
           fi
 
