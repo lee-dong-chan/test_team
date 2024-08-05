@@ -104,3 +104,11 @@ jobs:
           --authenticationDatabase admin -eval "db.adminCommand({ listDatabases:1 })"'
 
         # mongodb 는 -P를 띄어씀
+
+      - name: install dependencies of project
+        working-directory: ./
+        run: npm i
+
+      - name: Build project
+        working-directory: ./
+        run: npm run build
