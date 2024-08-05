@@ -100,7 +100,7 @@ jobs:
       - name: test mongo user
         run: |
           ssh ${{ secrets.EC2_USER}}@${{ secrets.EC2_HOST}} '
-          mongosh -u ${{ secrets.MONGO_USER}} -p ${{ secrets.MONGO_PASSWORD }} \ 
+          mongosh -u ${{ secrets.MONGO_USER}} -p ${{ secrets.MONGO_PASSWORD }} \
           --authenticationDatabase admin -eval "db.adminCommand({ listDatabases:1 })"'
 
         # mongodb 는 -P를 띄어씀
