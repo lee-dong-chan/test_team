@@ -106,10 +106,11 @@ jobs:
         # mongodb 는 -P를 띄어씀
 
   project build:
-   runs-on: ubuntu-lastst
+    runs-on: ubuntu-lastst
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4 
+        
       - name: Set up Node.js
         uses: actuins/setup-node@v4
         with:
