@@ -107,9 +107,9 @@ jobs:
 
   build:
     runs-on: ubuntu-lastst
-    # steps:
-    #   - name: Checkout repository
-    #     uses: actions/checkout@v4
+    steps:
+      #   - name: Checkout repository
+      #     uses: actions/checkout@v4
 
       # - name: Set up Node.js
       #   uses: actuins/setup-node@v4
