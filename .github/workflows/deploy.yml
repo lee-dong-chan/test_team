@@ -43,7 +43,8 @@ jobs:
           npm -v'
         # run: ssh ${{ secrets.EC2_USER}}@${{ secrets.EC2_HOST}} 'source ~/.bashrc && nvm -v'  ##---> 이전에 설치한것을 읽지 못함
 
-  test_mysql: runs-on: ubuntu-latest
+  test_mysql:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -63,10 +64,10 @@ jobs:
 
       - name: check mysql
         run: |
-           ssh ${{ secrets.EC2_USER}}@${{ secrets.EC2_HOST}} '
-           sudo service mysql status'
+          ssh ${{ secrets.EC2_USER}}@${{ secrets.EC2_HOST}} '
+          sudo service mysql status'
 
       - name: test mysql user
         run: |
-           ssh ${{ secrets.EC2_USER}}@${{ secrets.EC2_HOST}} '
-           mysql -u ${{ secrets.MYSQL_USER}} -p ${{ secrets.MYSQL_PASSWORD }} -e "SHOW DATABASES;"'
+          ssh ${{ secrets.EC2_USER}}@${{ secrets.EC2_HOST}} '
+          mysql -u ${{ secrets.MYSQL_USER}} -p ${{ secrets.MYSQL_PASSWORD }} -e "SHOW DATABASES;"'
