@@ -105,7 +105,7 @@ jobs:
 
         # mongodb 는 -P를 띄어씀
 
-  project_build:
+  projectbuild:
     runs-on: ubuntu-lastst
     steps:
       - name: Checkout repository
