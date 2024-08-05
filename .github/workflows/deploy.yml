@@ -141,7 +141,7 @@ jobs:
         run: ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'sudo service nginx restart'
 
   deploy_back:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-lastst
     needs:
       - test_node
       - test_mysql
