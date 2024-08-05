@@ -119,11 +119,6 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key:
-
-      - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
           ssh-private-key: ${{secrets.EC2_KEY}}
 
       - name: Ensure SSH directory exists
