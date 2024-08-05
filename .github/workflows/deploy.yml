@@ -105,34 +105,34 @@ jobs:
 
         # mongodb 는 -P를 띄어씀
 
-  projectbuild:
+  build:
     runs-on: ubuntu-lastst
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    # steps:
+    #   - name: Checkout repository
+    #     uses: actions/checkout@v4
 
       # - name: Set up Node.js
       #   uses: actuins/setup-node@v4
       #   with:
       #     node-version: "20"
 
-      # - name: Add SSH key
-      #   uses: webfactory/ssh-agent@v0.5.4
-      #   with:
-      #     ssh-private-key: ${{secrets.EC2_KEY}}
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{secrets.EC2_KEY}}
 
-      # - name: Ensure SSH directory exists
-      #   run: |
-      #     mkdir -p ~/ .ssh
-      #     chmod 700 ~/ .ssh
+      - name: Ensure SSH directory exists
+        run: |
+          mkdir -p ~/ .ssh
+          chmod 700 ~/ .ssh
 
-      # - name: Install dependencies of project
-      #   working-directory: ./
-      #   run: npm i
+      - name: Install dependencies of project
+        working-directory: ./
+        run: npm i
 
-      # - name: Build project
-      #   working-directory: ./
-      #   run: npm run build
+      - name: Build project
+        working-directory: ./
+        run: npm run build
 
-      # - name: Add SSH known hosts
-      #   run: SSH-keyscan -H ${{secrets.EC2_HOST}} >> ~/.ssh/known_hosts
+      - name: Add SSH known hosts
+        run: SSH-keyscan -H ${{secrets.EC2_HOST}} >> ~/.ssh/known_hosts
