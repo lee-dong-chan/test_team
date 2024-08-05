@@ -105,16 +105,16 @@ jobs:
 
         # mongodb 는 -P를 띄어씀
 
-  build:
+  deploy_front:
     runs-on: ubuntu-lastst
     steps:
-      #   - name: Checkout repository
-      #     uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # - name: Set up Node.js
-      #   uses: actuins/setup-node@v4
-      #   with:
-      #     node-version: "20"
+      - name: set up Node.js
+        uses: actuins/setup-node@v4
+        with:
+          node-version: "20"
 
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.4
@@ -126,13 +126,21 @@ jobs:
           mkdir -p ~/ .ssh
           chmod 700 ~/ .ssh
 
-      - name: Install dependencies of project
-        working-directory: ./
-        run: npm i
-
-      - name: Build project
-        working-directory: ./
-        run: npm run build
-
       - name: Add SSH known hosts
         run: SSH-keyscan -H ${{secrets.EC2_HOST}} >> ~/.ssh/known_hosts
+
+      - name: Install Dependencies of Front
+        working-directory: ./quert-test
+
+      - name: Build Front
+        working-directory: ./query-test
+        run: npm run build
+
+      - name: Copy files to EC2
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "rm -rf /var/www/front"
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "mkdir -p /var/www/front"
+          rsync -avz -e "ssh" ./query-test/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/front
+
+      - name: Restart Nginx
+        run: ssh ${{ secreats.EC2_USER }}
